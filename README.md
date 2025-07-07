@@ -79,3 +79,78 @@ if __name__ == "__main__":
 > ❗ If errors occur, re-run `crawl4ai-doctor` or manually ensure **Playwright** is installed correctly.
 
 ---
+
+### 4. Common Error and Fix
+
+If you see an error like this:
+
+```
+Error: BrowserType.launch: Executable doesn't exist at /home/codespace/.cache/ms-playwright/chromium-1179/chrome-linux/chrome
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+```
+
+This means Playwright's browser binaries are missing. To fix it, run:
+
+```bash
+playwright install
+```
+
+This will download the necessary browsers so Playwright can launch them properly.
+
+---
+
+### 5. Playwright Dependency Warning on Linux
+
+When downloading browsers, you might see a warning like this:
+
+```
+Playwright Host validation warning: 
+╔══════════════════════════════════════════════════════╗
+║ Host system is missing dependencies to run browsers. ║
+║ Please install them with the following command:      ║
+║                                                      ║
+║     sudo playwright install-deps                     ║
+║                                                      ║
+║ Alternatively, use apt:                              ║
+║     sudo apt-get install libatk1.0-0t64\             ║
+║         libatk-bridge2.0-0t64\                       ║
+║         libcups2t64\                                 ║
+║         libxkbcommon0\                               ║
+║         libatspi2.0-0t64\                            ║
+║         libxcomposite1\                              ║
+║         libxdamage1\                                 ║
+║         libxfixes3\                                  ║
+║         libxrandr2\                                  ║
+║         libgbm1\                                     ║
+║         libasound2t64                                ║
+║                                                      ║
+║ <3 Playwright Team                                   ║
+╚══════════════════════════════════════════════════════╝
+```
+
+This means your system is missing some libraries required by Playwright browsers.
+
+**How to fix:**
+
+Run the following command to install all necessary dependencies:
+
+```bash
+sudo playwright install-deps
+```
+
+Alternatively, you can install the listed libraries manually with:
+
+```bash
+sudo apt-get install libatk1.0-0 libatk-bridge2.0-0 libcups2 libxkbcommon0 libatspi2.0-0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2
+```
+
+> ⚠️ Make sure to have the appropriate permissions (sudo) and that you are running this on a compatible Linux distribution.
+
+---
